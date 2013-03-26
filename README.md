@@ -18,7 +18,7 @@ Status
 not finished, barelly(?) usable
 
 - Automatically organizes images, by day into folders
-  - while app is opens it monitors for file changes in the pictures directory if finds an image automatically moves to folder
+  - while app is open it monitors for file changes in the pictures directory if finds an image automatically moves to folder
 - Allows to apply an image filter and then save the image
 - Uses localstorage, to memorize the last used picture directory
 - Click on folders to browse into. use "back" to go back to root folder.
