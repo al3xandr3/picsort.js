@@ -6,9 +6,9 @@ picsort2
 Use Case
 ---------
 
-1. Download your pitures from camera onto computer, 
-2. Run app to organize them into folders, 
-3. Browse to picture you want and select it(click on it) to go post it online
+1. Download your pictures from camera onto computer.
+2. Run app to organize them into folders.
+3. Browse to picture you want and select it(click on it) to go post it online.
 
 When selecting(clicking) the picture it applies a photo enhancing photo filter (tipically curves + vignette) and prompts for a "save as".
 
@@ -16,6 +16,8 @@ Status
 ------
 
 not finished, barelly(?) usable
+
+Using javascript, coffescript, nodejs inside node-webkit, allows for standalone apps.
 
 - Automatically organizes images, by day into folders
   - while app is open it monitors for file changes in the pictures directory if finds an image automatically moves to folder
