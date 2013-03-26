@@ -1,0 +1,15 @@
+{
+  "name": "picsort",
+  "version" : "0.1.1",
+  "main": "index.html",
+  "window": {
+    "show": true,
+    "toolbar": false,
+    "frame": true,
+    "position": "center",
+    "width": 600,
+    "height": 400,
+    "min_width": 220,
+    "min_height": 220
+  }
+}

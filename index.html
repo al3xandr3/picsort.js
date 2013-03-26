@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>picsort</title>
+</head>
+<body>
+<script type="text/javascript" src="vendor/js/underscore.js"></script>
+<script type="text/javascript" src="vendor/js/jquery.js"></script>
+<script type="text/javascript" src="vendor/js/caman.full.min.js"></script>
+<script type="text/javascript" src="src/main.js"></script>
+
+Dir: <input type="file" id="dir_choose" nwdirectory /> 
+<button id="back">back</button>
+
+<script>
+
+</script>
+
+
+
+
+
+<div id="pics"></div>
+
+<script>
+
+p = console.log 
+
+var picdir_set = function (dir) {
+  return localStorage["dir"] = dir;
+}
+
+var picdir_get = function () {
+  return localStorage.getItem("dir");
+}
+
+// https://github.com/rogerwang/node-webkit/wiki/File-dialogs
+$('#dir_choose').change(function (e) {
+  update_view (picdir_set($(this).val()) );
+});
+
+var update_view = function(path) {
+  picdir_list(path, function(html) {
+      $('#pics').html(html);
+      $('.image').each (function (){
+      Caman(this, function () {
+        this.resize({
+          width: 500,
+          height: 300
+        });
+        this.render();
+        });
+      })
+      });
+}
+
+monitor = function (path) {
+  if (typeof path === "string" & path !== "") {
+    // monitor
+    fs = require("fs")
+    fs.watch(path, function (event, filename) {
+      byday(path);
+      update_view(path);
+    });    
+  }
+}
+
+// first run
+if (typeof picdir_get() === "string" & picdir_get() !== "") {
+  byday(picdir_get());
+  update_view(picdir_get());
+  monitor(picdir_get());
+}
+// <button id="sort">Sort!</button>
+$('#back').click(function (e) {
+	update_view(picdir_get());
+});
+
+// monithor folder clicks
+$(document).on('click', '.dir', function(e) {
+	subdir = $(this).attr('data-dir');
+	update_view(subdir);
+});
+
+
+// filter + save
+try {
+  $(document).on('click', '.image', function(e) {
+
+    Caman(this, function () {
+      this.brightness(10);
+      this.contrast(-5);
+      this.saturation(-50);
+      this.vignette('40%');
+
+      this.render(function () {
+        this.save('png'); // shows a download file promp
+        // or...
+        //this.toBase64(); //  base64 data URL representation of the image. useful if you want to upload the modified image.
+      });
+  });
+  });
+} catch (e) { console.log (e);}
+
+
+
+</script>
+</body>
+</html>
