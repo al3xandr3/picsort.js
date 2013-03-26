@@ -1,5 +1,5 @@
 
-picsort
+picsort2
 ========
 
 not finished, barelly(?) usable
